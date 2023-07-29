@@ -19,6 +19,8 @@ class UserController{
 
         res.json(id);
     }
+
+    
 }
 
 module.exports = new UserController();

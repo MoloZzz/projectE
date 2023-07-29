@@ -64,7 +64,7 @@ History.belongsTo(Basket);
 History.hasMany(Rating);
 Rating.belongsTo(History);
 
-History.hasMany(HistoryInfo);
+History.hasMany(HistoryInfo, {as: 'info'});
 HistoryInfo.belongsTo(History);
 
 Type.hasMany(History);
