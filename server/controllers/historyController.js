@@ -1,7 +1,8 @@
 const uuid = require('uuid');
 const path = require('path');
-const {History} = require('../models/models');
-const ApiError = require('../error/apiError')
+const {History,HistoryInfo} = require('../models/models');
+const ApiError = require('../error/apiError');
+const { model } = require('../db');
 
 
 class HistoryController{
@@ -66,10 +67,25 @@ class HistoryController{
     }
 
     async getOne(req,res){
+        //function is not work
 
-        
-    }
+        try{
+            const {id} = req.params;
 
+            const history = await History.findOne(
+                {
+                    where: {id},
+                    include: [{model: HistoryInfo, as: 'info'}]
+                },
+            );
+
+                return res.json(history);
+                
+        }catch(e){
+                next(ApiError.badRequest(e.message));
+        }
+                
+    }   
 }
 
 module.exports = new HistoryController();
