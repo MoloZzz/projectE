@@ -29,10 +29,12 @@ class UserController{
         try{
             const {email, password, role} = req.body;
 
+
             if(!email || !password){
                 return next( apiError.badRequest("Пустий імейл або пароль"));
             }
-            
+            let userRole = role || "USER";
+
             const candidate = await User.findOne({where: {email}});
     
             if(candidate){
@@ -41,7 +43,7 @@ class UserController{
     
             const hashPassword = await bcrypt.hash(password,3);
     
-            const user = await User.create({email, password: hashPassword,role: "USER"});
+            const user = await User.create({email, password: hashPassword,userRole});
 
             const basket = Basket.create({userId: user.id});
             
@@ -91,7 +93,10 @@ class UserController{
     }
 
     async check(req,res, next){
-        return res.json({message: "work"})
+
+        const token = jwt.generateJWT(req.user.email, req.user.password, req.user.role );
+
+        return res.json({token});
 
     }
 
