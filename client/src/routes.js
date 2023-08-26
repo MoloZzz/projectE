@@ -1,4 +1,3 @@
-import { Component } from "react"
 import { ADMIN_ROUTE, BOOKMARS_ROUTE, HISTORY_ROUTE, LIBRARY_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts"
 import Bookmars from "./pages/bookmarks"
 import AdminPage from "./pages/AdminPage"

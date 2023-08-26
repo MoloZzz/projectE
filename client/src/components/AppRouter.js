@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {Switch, Route, Redirect} from 'react-router-dom';
 import { authRoutes, publicRoutes } from "../routes";
 
@@ -8,13 +8,14 @@ const AppRouter = () =>{
     return(
         <Switch>
                 {
-                isAuth === true && authRoutes.map(({path,Component})=>
-                <Route key = {path} path = {path} Component={Component} exact/>
+                isAuth && authRoutes.map(
+                    ({path, Component}) => 
+                    <Route key = {path} path = {path} сomponent = {Component} exact/>
                 )}
                 
                 {
-                publicRoutes.map(({path,Component})=>
-                <Route key = {path} path = {path} Component={Component} exact/>
+                publicRoutes.map(
+                    ({path, Component}) => <Route key = {path} path = {path} сomponent={Component} exact/>
                 )}
         </Switch>
     );

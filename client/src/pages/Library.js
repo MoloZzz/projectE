@@ -3,7 +3,8 @@ import React from "react";
 const Library = () =>{
     return(
         <div>
-            Library
+            This is library,
+            main page
         </div>
     );
 };
