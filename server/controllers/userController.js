@@ -5,6 +5,8 @@ const bcrypt  = require('bcrypt');
 const jwt  = require('jsonwebtoken');
 
 
+
+
 const generateJWT = (id,email,role) =>{
     return jwt.sign(
     
@@ -89,13 +91,8 @@ class UserController{
     }
 
     async check(req,res, next){
+        return res.json({message: "work"})
 
-        const {id} = req.query;
-            if(!id){
-                return next(ApiError.badRequest('Не заданий ID'));
-            }
-
-        res.json(id);
     }
 
     
